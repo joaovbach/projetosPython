@@ -10,7 +10,7 @@ class pegaExternalId:
 		pass
 
 	def getNotExistExternal(self, external):
-		if verifiNotExist(external)  == False:
+		if self.verifiNotExist(external)  == False:
 			valores = self.cursor.execute("SELECT * FROM ids").fetchall()
 			ultimoInternal = 0
 			if len(valores) == 0:
@@ -24,7 +24,7 @@ class pegaExternalId:
 			print("external id ja existente")
 
 	def verifiNotExist(self, external):
-		valores = cursor.execute("SELECT * FROM ids")
+		valores = self.cursor.execute("SELECT * FROM ids")
 		exists = []
 		for i in valores:
 			exists.append(i[1])
