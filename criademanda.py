@@ -1,8 +1,8 @@
-import playwright
+from playwright.sync_api import Playwright, sync_playwright
+import time
 
-class criaDemanda:
-    def __init__(self) -> None:
-        print("criador de demanda instanciado")
-
-    def status(self):
-        print("criando demanda...")
+def run(playwright, page):
+    print("alee")
+    page.click("button:has-text(\"Demandas\")")
+    print("aguardando")
+    time.sleep(10000)
