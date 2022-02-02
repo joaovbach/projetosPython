@@ -4,12 +4,13 @@ import time
 from playwright.sync_api import Playwright, sync_playwright
 
 
+
 while 1:
     print("1-fazer login")
     opcao = input("digite a opcao")
     if opcao == '1':
 
-        print("oisdikosajhasdkjhaskojdhaslkjdhaskljdhaskdjhasjkdh")
+        print("iniciando")
         with sync_playwright() as playwright:
             browser = playwright.chromium.launch(headless=False)
             context = browser.new_context()

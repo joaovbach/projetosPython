@@ -14,6 +14,6 @@ def run(playwright, page):
     page.fill("[placeholder=\"Senha\"]", "123")
 
     page.press("[placeholder=\"Senha\"]", "Enter")
-    print("ois")
+    print("finalizando login")
     criademanda.run(playwright,page)
 
