@@ -1,9 +1,10 @@
 import criademanda
 from playwright.sync_api import Playwright, sync_playwright
+#import selecioneAutomacoes
 
 
 def run(playwright, page):
-
+    print("fazendo login")
     page.goto("https://ccomatrix-homologacao.matrixcargo.com.br/")
     page.click("[placeholder=\"Login\"]")
 
@@ -14,6 +15,6 @@ def run(playwright, page):
     page.fill("[placeholder=\"Senha\"]", "123")
 
     page.press("[placeholder=\"Senha\"]", "Enter")
-    print("finalizando login")
-    criademanda.run(playwright,page)
+    print("login finalizado")
+    #selecioneAutomacoes.avisos("login finalizado")
 

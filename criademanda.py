@@ -5,10 +5,10 @@ import dados
 
 def run(playwright, page):
     print("entrando na aba de demandas")
-    page.click("button:has-text(\"Demandas\")")
+    page.goto('https://ccomatrix-homologacao.matrixcargo.com.br/demands')
     
     page.click("button:has-text(\"Cadastrar nova demanda\")")
-    page.click(".sc-kBPbqO")
+    page.click(".sc-QplWO")
     print(dados.clientes())
     indice = input("selecione um deles")
     page.click("text="+dados.clientes()[int(indice)])
@@ -20,7 +20,7 @@ def run(playwright, page):
     page.fill("input[name=\"cost_center\"]", "1")
     page.fill("input[name=\"result_center\"]", "1")
 
-    page.click(".sc-kBPbqO")#CLICA PARA ESCOLHER PONTO DE PARADA
+    page.click(".col-lg-9 div:nth-child(4) div .sc-fkubWd .sc-dHntBn .sc-QplWO")#CLICA PARA ESCOLHER PONTO DE PARADA
     print(dados.pontosDeParada())
     indice2 = input("selecione um ponto de parada")
     page.click("text="+dados.pontosDeParada()[int(indice2)])
@@ -35,7 +35,7 @@ def run(playwright, page):
     page.fill("input[name=\"origin_stop_loads[0][0].quantity\"]", "1")
     page.fill("input[name=\"origin_stop_loads[0][0].description\"]", "1")
 
-    page.click(".sc-kBPbqO")#CLICA PARA ESCOLHER PONTO DE ENTREGA
+    page.click("div:nth-child(7) div .sc-fkubWd .sc-dHntBn .sc-QplWO")#CLICA PARA ESCOLHER PONTO DE ENTREGA
     print(dados.pontosDeEntrega())
     indice3 = input("escolha um ponto de entrega")
     page.click("text="+dados.pontosDeEntrega()[int(indice3)])
@@ -44,7 +44,7 @@ def run(playwright, page):
 
     page.click("button:has-text(\"Cadastrar nova demanda\")")
 
+    print("cadastro de demanda finalizado")
 
 
-    time.sleep(10000)
 
