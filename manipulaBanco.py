@@ -1,6 +1,8 @@
 from pickle import FALSE
 import sqlite3
 import random
+from datetime import date
+
 
 banco = sqlite3.connect("banco.db")
 cursor = banco.cursor()
@@ -28,14 +30,23 @@ def retornaUmExternalIdInexistente():
             
 
             if externalid in allExternals:
-                print(f"o external id:{externalid} ja existe")
+                #print(f"o external id:{externalid} ja existe")
                 jaTem=True
             else:
-                print(f"o external id: {externalid} nao existe no banco")
+                #print(f"o external id: {externalid} nao existe no banco")
                 cursor.execute(f"INSERT INTO valores VALUES(1,{externalid},1/1/1)")
                 banco.commit()
                 jaTem=False
+                return externalid
+    
+def getDataValida(incremento):
+    dia = date.today().strftime("%d")
+    mes = date.today().strftime("%m")
+    ano = date.today().strftime("%Y")
+    
     
 
+
 #criaTabela("valores",["indice","externalId","dataDeCriacao"])
-retornaUmExternalIdInexistente()
+#print(retornaUmExternalIdInexistente())
+getDataValida(0)

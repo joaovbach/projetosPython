@@ -2,6 +2,7 @@ from multiprocessing.connection import wait
 from playwright.sync_api import Playwright, sync_playwright
 import time
 import dados
+import valoresValidos
 
 def run(playwright, page):
     print("entrando na aba de demandas")
@@ -15,7 +16,7 @@ def run(playwright, page):
     page.click("button:has-text(\"Confirmar seleção\")")
 
 
-    page.fill("input[name=\"external_id\"]", "1")
+    page.fill("input[name=\"external_id\"]", str(valoresValidos.retornaExternalIdInexistente()))
     page.fill("input[name=\"description\"]", "1")
     page.fill("input[name=\"cost_center\"]", "1")
     page.fill("input[name=\"result_center\"]", "1")
