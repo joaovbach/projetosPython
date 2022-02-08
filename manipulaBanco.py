@@ -40,13 +40,33 @@ def retornaUmExternalIdInexistente():
                 return externalid
     
 def getDataValida(incremento):
-    dia = date.today().strftime("%d")
-    mes = date.today().strftime("%m")
-    ano = date.today().strftime("%Y")
+    dia = int(date.today().strftime("%d"))
+    mes = int(date.today().strftime("%m"))
+    ano = int(date.today().strftime("%Y"))
+
+    diaFinal = ""
+    mesFinal = ""
+
+    dia += incremento
+
+    if dia>30:
+        dia = 1
+        mes+=1
+
+    if dia<10:
+        diaFinal = "0"+str(dia)
+    else:
+        diaFinal = str(dia)
+
+    if mes<10:
+        mesFinal = "0"+str(mes)
+    else:
+        mesFinal = str(mes)
     
-    
+    return str(str(diaFinal) + "/" + str(mesFinal) + "/" + str(ano) + " " + "20:00_")
+     
 
 
 #criaTabela("valores",["indice","externalId","dataDeCriacao"])
 #print(retornaUmExternalIdInexistente())
-getDataValida(0)
+print(getDataValida(1))
