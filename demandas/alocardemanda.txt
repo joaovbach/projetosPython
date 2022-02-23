@@ -1,0 +1,59 @@
+Record
+
+
+
+
+Target:
+
+Python
+
+from playwright.sync_api import Playwright, sync_playwright
+def run(playwright: Playwright) -> None:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    # Open new page
+    page = context.new_page()
+    # Click body
+    # with page.expect_navigation(url="https://ccomatrix-homologacao.matrixcargo.com.br/"):
+    with page.expect_navigation():
+        page.click("body")
+    # Click [placeholder="Login"]
+    page.click("[placeholder=\"Login\"]")
+    # Fill [placeholder="Login"]
+    page.fill("[placeholder=\"Login\"]", "joao.bach@matrixcargo.com.br")
+    # Press Tab
+    page.press("[placeholder=\"Login\"]", "Tab")
+    # Fill [placeholder="Senha"]
+    page.fill("[placeholder=\"Senha\"]", "12")
+    # Press Enter
+    page.press("[placeholder=\"Senha\"]", "Enter")
+    # Fill [placeholder="Senha"]
+    page.fill("[placeholder=\"Senha\"]", "123")
+    # Press Enter
+    page.press("[placeholder=\"Senha\"]", "Enter")
+    # Click div:nth-child(5) .sc-kfzAmx .sc-iUuytg svg
+    # with page.expect_navigation(url="https://ccomatrix-homologacao.matrixcargo.com.br/optimizations"):
+    with page.expect_navigation():
+        page.click("div:nth-child(5) .sc-kfzAmx .sc-iUuytg svg")
+    # assert page.url == "https://ccomatrix-homologacao.matrixcargo.com.br/optimizations"
+    # Click svg[role="img"]
+    page.click("svg[role=\"img\"]")
+    # Click button:has-text("Alocar composição")
+    page.click("button:has-text(\"Alocar composição\")")
+    # Click [placeholder="Buscar por nome do motorista, placa ou tipo de composição"]
+    page.click("[placeholder=\"Buscar por nome do motorista, placa ou tipo de composição\"]")
+    # Fill [placeholder="Buscar por nome do motorista, placa ou tipo de composição"]
+    page.fill("[placeholder=\"Buscar por nome do motorista, placa ou tipo de composição\"]", "laurindo")
+    # Click text=×CloseAlocar composiçãoSelecione uma composição (Listando apenas as que possuem  >> img
+    page.click("text=×CloseAlocar composiçãoSelecione uma composição (Listando apenas as que possuem  >> img")
+    # Click text=Motorista: LAURINDO DO ROCIO MOLINARI
+    page.click("text=Motorista: LAURINDO DO ROCIO MOLINARI")
+    # Click button:has-text("Confirmar seleção")
+    # with page.expect_navigation(url="https://ccomatrix-homologacao.matrixcargo.com.br/optimizations"):
+    with page.expect_navigation():
+        page.click("button:has-text(\"Confirmar seleção\")")
+    # ---------------------
+    context.close()
+    browser.close()
+with sync_playwright() as playwright:
+    run(playwright)

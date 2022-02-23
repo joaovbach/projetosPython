@@ -1,0 +1,87 @@
+https://ccomatrix-homologacao.matrixcargo.com.br/optimizations
+
+
+Record
+
+
+
+
+Target:
+
+Python
+
+from playwright.sync_api import Playwright, sync_playwright
+def run(playwright: Playwright) -> None:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    # Open new page
+    page = context.new_page()
+    # Go to https://ccomatrix-homologacao.matrixcargo.com.br/
+    page.goto("https://ccomatrix-homologacao.matrixcargo.com.br/")
+    # Click [placeholder="Login"]
+    page.click("[placeholder=\"Login\"]")
+    # Fill [placeholder="Login"]
+    page.fill("[placeholder=\"Login\"]", "joao.bach@matrixcargo.com.nr")
+    # Press Tab
+    page.press("[placeholder=\"Login\"]", "Tab")
+    # Click [placeholder="Login"]
+    page.click("[placeholder=\"Login\"]")
+    # Fill [placeholder="Login"]
+    page.fill("[placeholder=\"Login\"]", "joao.bach@matrixcargo.com.br")
+    # Press Tab
+    page.press("[placeholder=\"Login\"]", "Tab")
+    # Fill [placeholder="Senha"]
+    page.fill("[placeholder=\"Senha\"]", "123")
+    # Press Enter
+    page.press("[placeholder=\"Senha\"]", "Enter")
+    # Click div:nth-child(5) .sc-kfzAmx .sc-iUuytg svg
+    # with page.expect_navigation(url="https://ccomatrix-homologacao.matrixcargo.com.br/optimizations"):
+    with page.expect_navigation():
+        page.click("div:nth-child(5) .sc-kfzAmx .sc-iUuytg svg")
+    # assert page.url == "https://ccomatrix-homologacao.matrixcargo.com.br/optimizations"
+    # Click button:has-text("Adicionar nova otimização")
+    page.click("button:has-text(\"Adicionar nova otimização\")")
+    # assert page.url == "https://ccomatrix-homologacao.matrixcargo.com.br/optimizations/new"
+    # Click li:has-text("26580(ext. 495135)")
+    page.click("li:has-text(\"26580(ext. 495135)\")")
+    # Click text=ID da demanda:26580(ext. 495135)Cliente:ZF AUTOMOTIVE BRASIL LTDA.Origem:Santos  >> :nth-match(span, 3)
+    page.click("text=ID da demanda:26580(ext. 495135)Cliente:ZF AUTOMOTIVE BRASIL LTDA.Origem:Santos  >> :nth-match(span, 3)")
+    # Click button:has-text("Continuar")
+    page.click("button:has-text(\"Continuar\")")
+    # Check input[name="trunk"]
+    page.check("input[name=\"trunk\"]")
+    # Check input[name="whithout_app"]
+    page.check("input[name=\"whithout_app\"]")
+    # Check input[name="outsourced"]
+    page.check("input[name=\"outsourced\"]")
+    # Check input[name="container_carrier"]
+    page.check("input[name=\"container_carrier\"]")
+    # Check input[name="frigorific_trunk"]
+    page.check("input[name=\"frigorific_trunk\"]")
+    # Check input[name="refrigerated_trunk"]
+    page.check("input[name=\"refrigerated_trunk\"]")
+    # Check input[name="high_grid"]
+    page.check("input[name=\"high_grid\"]")
+    # Click span:has-text("250")
+    page.click("span:has-text(\"250\")")
+    # Click text=520 Km
+    page.click("text=520 Km")
+    # Double click span:has-text("520")
+    page.dblclick("span:has-text(\"520\")")
+    # Triple click span[role="slider"]:has-text("990")
+    page.click("span[role=\"slider\"]:has-text(\"990\")", click_count=3)
+    # Click button:has-text("Avançar")
+    page.click("button:has-text(\"Avançar\")")
+    # Click text=ID da composição00000177Tipo da composiçãoCarretaPlacasNTO1906; BEA8E45Motorista >> :nth-match(span, 3)
+    page.click("text=ID da composição00000177Tipo da composiçãoCarretaPlacasNTO1906; BEA8E45Motorista >> :nth-match(span, 3)")
+    # Click button:has-text("Continuar")
+    page.click("button:has-text(\"Continuar\")")
+    # Click button:has-text("Otimizar")
+    # with page.expect_navigation(url="https://ccomatrix-homologacao.matrixcargo.com.br/optimizations"):
+    with page.expect_navigation():
+        page.click("button:has-text(\"Otimizar\")")
+    # ---------------------
+    context.close()
+    browser.close()
+with sync_playwright() as playwright:
+    run(playwright)
