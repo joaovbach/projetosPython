@@ -1,10 +1,11 @@
 import time
-
+from otimizaoGeral import OtimizacaoGeral as oti
 class DemandaGeral:
     
     def __init__(self, banco) -> None:
         self.bancodados = banco
         self.bancodados.criaTabela("valores",["internalId","externalId","data"])
+        
 
     def criaDemanada(self, playwright, page):
         externals = []
@@ -68,6 +69,9 @@ class DemandaGeral:
             page.fill("div:nth-child(7) div:nth-child(2) .flex-column div .sc-jGVbCA .d-flex .react-datepicker-wrapper .react-datepicker__input-container .sc-gKsewC .sc-dlfnbm .sc-hKgILt .sc-fubCfw", self.bancodados.getDataValida(5))
             with page.expect_navigation():
                 page.click("button:has-text(\"Cadastrar nova demanda\")")
+
+            oti.geraOtimizacao(oti, playwright, page, externals)
+            
 
     def alocaDemanda(self, playwright, page):
 

@@ -1,4 +1,5 @@
 from cmath import log
+import this
 from playwright.sync_api import Playwright, sync_playwright
 from demandasEotimizacao import criaDemanda
 import manipulaBanco
@@ -8,14 +9,16 @@ from demandasEotimizacao import geraOtimizacao
 from chatGeral import ChatGeral
 from demandaGeral import DemandaGeral
 import time
+from otimizaoGeral import OtimizacaoGeral
 
 chats = ChatGeral()
 demandas = DemandaGeral(manipulaBanco)
+otimizacao = OtimizacaoGeral()
 
 testeChats = [chats.encerraChat,chats.iniciaChat]
 acoesDemandas = [demandas.criaDemanada, demandas.alocaDemanda]
 
-cenario = [acoesDemandas[1]]
+cenario = [acoesDemandas[0]]
 
 
 with sync_playwright() as playwright:
