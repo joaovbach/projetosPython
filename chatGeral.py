@@ -8,24 +8,24 @@ class ChatGeral:
     def chatEmMassa(self):
         pass
 
-    def iniciaChat(self, playwright, page):
+    def iniciaChat(self, **kwargs):
         
-        page.goto("https://ccomatrix-homologacao.matrixcargo.com.br/chats")
-        page.click("button:has-text(\"Iniciar chat\")")
-        page.click("text=Nome: ELIAS LENZ FERREIRA")
-        with page.expect_navigation():
-            page.click("button:has-text(\"Confirmar seleção\")")
+        kwargs["pagina"].goto("https://ccomatrix-homologacao.matrixcargo.com.br/chats")
+        kwargs["pagina"].click("button:has-text(\"Iniciar chat\")")
+        kwargs["pagina"].click("text=Nome: ELIAS LENZ FERREIRA")
+        with kwargs["pagina"].expect_navigation():
+            kwargs["pagina"].click("button:has-text(\"Confirmar seleção\")")
 
         #page.click("#inputMessage")  
-        page.fill("#inputMessage", "alo") 
-        page.press("#inputMessage", "Enter")
+        kwargs["pagina"].fill("#inputMessage", "alo") 
+        kwargs["pagina"].press("#inputMessage", "Enter")
         time.sleep(2)
 
-    def encerraChat(self, playwright, page):
+    def encerraChat(self, **kwargs):
             
-        page.goto("https://ccomatrix-homologacao.matrixcargo.com.br/chats")
-        page.click("button:has-text(\"Meus chats\")")  
-        page.click("text=ELIAS LENZ FERREIRA")        
-        page.click("text=Marcar como resolvido >> div")        
-        page.click("button:has-text(\"Confirmar\")")
+        kwargs["pagina"].goto("https://ccomatrix-homologacao.matrixcargo.com.br/chats")
+        kwargs["pagina"].click("button:has-text(\"Meus chats\")")  
+        kwargs["pagina"].click("text=ELIAS LENZ FERREIRA")        
+        kwargs["pagina"].click("text=Marcar como resolvido >> div")        
+        kwargs["pagina"].click("button:has-text(\"Confirmar\")")
 

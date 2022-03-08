@@ -1,0 +1,61 @@
+Record
+
+
+
+
+Target:
+
+Python
+
+from playwright.sync_api import Playwright, sync_playwright
+def run(playwright: Playwright) -> None:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    # Open new page
+    page = context.new_page()
+    # Go to https://ccomatrix-homologacao.matrixcargo.com.br/
+    page.goto("https://ccomatrix-homologacao.matrixcargo.com.br/")
+    # Click [placeholder="Login"]
+    page.click("[placeholder=\"Login\"]")
+    # Fill [placeholder="Login"]
+    page.fill("[placeholder=\"Login\"]", "joao.bach@matrixcargo.com.br")
+    # Press Tab
+    page.press("[placeholder=\"Login\"]", "Tab")
+    # Fill [placeholder="Senha"]
+    page.fill("[placeholder=\"Senha\"]", "123")
+    # Press Enter
+    page.press("[placeholder=\"Senha\"]", "Enter")
+    # Click div:nth-child(5) .sc-kfzAmx .sc-iUuytg svg
+    # with page.expect_navigation(url="https://ccomatrix-homologacao.matrixcargo.com.br/optimizations"):
+    with page.expect_navigation():
+        page.click("div:nth-child(5) .sc-kfzAmx .sc-iUuytg svg")
+    # assert page.url == "https://ccomatrix-homologacao.matrixcargo.com.br/optimizations"
+    # Click text=(11) Otimizações geradas
+    page.click("text=(11) Otimizações geradas")
+    # assert page.url == "https://ccomatrix-homologacao.matrixcargo.com.br/optimizations"
+    # Click #optimizationCardList >> :nth-match(div:has-text("ID:Pendente4180Operador responsável:João Bach ProdInclusão da otimização:02/03/2"), 4)
+    page.click("#optimizationCardList >> :nth-match(div:has-text(\"ID:Pendente4180Operador responsável:João Bach ProdInclusão da otimização:02/03/2\"), 4)")
+    # Click li:has-text("4180")
+    page.click("li:has-text(\"4180\")")
+    # Click #optimizationCardList >> :nth-match(div:has-text("ID:Pendente4180Operador responsável:João Bach ProdInclusão da otimização:02/03/2"), 4)
+    page.click("#optimizationCardList >> :nth-match(div:has-text(\"ID:Pendente4180Operador responsável:João Bach ProdInclusão da otimização:02/03/2\"), 4)")
+    # Click svg[role="img"]
+    page.click("svg[role=\"img\"]")
+    # Click button:has-text("Visualizar Resultados")
+    page.click("button:has-text(\"Visualizar Resultados\")")
+    # assert page.url == "https://ccomatrix-homologacao.matrixcargo.com.br/optimizations/show"
+    # Click text=Rota 15695
+    page.click("text=Rota 15695")
+    # Click text=ID: 26620 (Ext. 312312)
+    page.click("text=ID: 26620 (Ext. 312312)")
+    # Click svg[role="img"]
+    page.click("svg[role=\"img\"]")
+    # Click text=Aceitar Rota
+    page.click("text=Aceitar Rota")
+    # Click button:has-text("Confirmar")
+    page.click("button:has-text(\"Confirmar\")")
+    # ---------------------
+    context.close()
+    browser.close()
+with sync_playwright() as playwright:
+    run(playwright)
