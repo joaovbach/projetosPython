@@ -1,12 +1,21 @@
 import time
 
 class ChatGeral:
-
+    
     def __init__(self) -> None:
-        pass
+        self.tipos = ["Frota Própria","Agregados","Terceiros"]
 
-    def chatEmMassa(self):
-        pass
+    def chatEmMassa(self, **kwargs):
+        kwargs["pagina"].goto("https://ccomatrix-homologacao.matrixcargo.com.br/chats")
+        kwargs["pagina"].click("button:has-text(\"Mensagem em massa\")")
+        for i in self.tipos:
+            #resposta = input(f"deseja mandar para os motoristas do tipo {i}? s/n")
+            #if resposta == 's':
+            kwargs["pagina"].click(f"text={i}")
+
+        kwargs["pagina"].fill("input[name=\"title\"]", kwargs["titulo"])
+        kwargs["pagina"].fill("textarea[name=\"message\"]", kwargs["mensagem"])
+        kwargs["pagina"].click("button:has-text(\"confirmar envio\")")
 
     def iniciaChat(self, **kwargs):
         

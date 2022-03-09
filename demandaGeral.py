@@ -18,7 +18,21 @@ class DemandaGeral:
 
             #AQUI VAI PREENCHER O CLIENTE
             print("aguardando clicar no cliente")
-            kwargs['pagina'].click(".sc-gJrzqj")
+            #try:
+                #kwargs['pagina'].locator(f'[class$="complete_row"]:>>input').click()
+                #print("apertei")
+            #except:
+                #print("nao encontrei")
+            #try:
+                #kwargs['pagina'].click(".sc-gJrzqj")
+            #except:
+                #kwargs['pagina'].click(".sc-fVfVBW")
+            teste = kwargs['pagina'].locator('[class$="complete_row"]>>[placeholder="Selecionar cliente"]')
+            #print("aaaalo", teste)
+            #kwargs["pagina"].locator('[placeholder="Selecionar cliente"]').click()
+            #kwargs['pagina'].click(".sc-gJrzqj")
+            teste.click(force=True)
+            
             print("clicou no cliente")
             kwargs['pagina'].click("text=7D1BB818-5E11-45D2-BE4E-9B398D1B35F1Created with sketchtool.AAM DO BRASIL LTDANo")
             kwargs['pagina'].click("button:has-text(\"Confirmar seleção\")")
@@ -38,7 +52,9 @@ class DemandaGeral:
             kwargs['pagina'].fill("input[name=\"result_center\"]", "1")
 
             #AQUI VAI PREENCHER O PRIMEIRO PONTO DE COLETA
-            kwargs['pagina'].click(".sc-gJrzqj")
+            #kwargs['pagina'].click(".sc-gJrzqj")
+            teste2 = kwargs['pagina'].locator('[class$="complete_row"]>>[name="origin_demand_stops[0].address_id"]')
+            teste2.click(force=True)
             kwargs['pagina'].click("text=7D1BB818-5E11-45D2-BE4E-9B398D1B35F1Created with sketchtool.1110015 GLUDAN GRUPP")
             kwargs['pagina'].click("button:has-text(\"Confirmar seleção\")")
 
@@ -61,7 +77,9 @@ class DemandaGeral:
             kwargs['pagina'].fill("input[name=\"origin_stop_loads[0][0].description\"]", "1")
 
             #AQUI VAI PREENCHER O PRIMEIRO PONTO DE ENTREGA
-            kwargs['pagina'].click(".sc-gJrzqj")
+            #kwargs['pagina'].click(".sc-gJrzqj")
+            teste3 = kwargs['pagina'].locator('[class$="complete_row"]>>[name="destination_demand_stops[0].address_id"]')
+            teste3.click(force=True)
             kwargs['pagina'].click("text=7D1BB818-5E11-45D2-BE4E-9B398D1B35F1Created with sketchtool.3M DO BRASIL LTDA | ")
             kwargs['pagina'].click("button:has-text(\"Confirmar seleção\")")
 
