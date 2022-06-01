@@ -11,7 +11,7 @@ from demandaGeral import DemandaGeral
 import time
 from otimizaoGeral import OtimizacaoGeral
 from aceitaRota import AceitaRota
-
+from newCadastroMotora import CadastroMotoraRefac
 ###VARIAVEIS DO KWARGS####################################################################################################################################################################################
 
 #playwright = biblioteca
@@ -29,11 +29,12 @@ chats = ChatGeral()
 demandas = DemandaGeral(manipulaBanco)
 otimizacao = OtimizacaoGeral()
 aceitaRota = AceitaRota()
+motoraRefac = CadastroMotoraRefac()
 
 testeChats = [chats.encerraChat,chats.iniciaChat, chats.chatEmMassa]
 acoesDemandas = [demandas.criaDemanada, demandas.alocaDemanda]
 rotas = [aceitaRota.aceitaRota]
-cenario = [testeChats[2],acoesDemandas[0]]
+cenario = [chats.chatEmMassa]
 
 
 with sync_playwright() as playwright:

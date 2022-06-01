@@ -7,7 +7,8 @@ class ChatGeral:
 
     def chatEmMassa(self, **kwargs):
         kwargs["pagina"].goto("https://ccomatrix-homologacao.matrixcargo.com.br/chats")
-        kwargs["pagina"].click("button:has-text(\"Mensagem em massa\")")
+        #kwargs["pagina"].click("span:has-text(\"Chat em massa\")")
+        kwargs["pagina"].frame_locator("iframe").locator("text=forumChat em massa").click()
         for i in self.tipos:
             #resposta = input(f"deseja mandar para os motoristas do tipo {i}? s/n")
             #if resposta == 's':
