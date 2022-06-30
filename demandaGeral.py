@@ -8,8 +8,9 @@ class DemandaGeral:
         
 
     def criaDemanada(self, **kwargs):
+        print("to cadastrando a demanda")
         externals = []
-        quantidade  = input("quantas demandas voce deseja criar?")
+        quantidade  = input("quantas demandas voce deseja criar???")
         for i in range(0,int(quantidade)):
             #AQUI ENTRA NA ABA DE DEMANDAS E VAI PARA CRIAR UMA NOVA DEMANDA
             kwargs['pagina'].click("div:nth-child(4) .sc-kfzAmx .sc-iUuytg svg")
@@ -88,7 +89,7 @@ class DemandaGeral:
             with kwargs['pagina'].expect_navigation():
                 kwargs['pagina'].click("button:has-text(\"Cadastrar nova demanda\")")
 
-            oti.geraOtimizacao(otimi = oti,lib = kwargs["lib"],pagina = kwargs["pagina"], listaExtIds = externals)
+            #oti.geraOtimizacao(otimi = oti,lib = kwargs["lib"],pagina = kwargs["pagina"], listaExtIds = externals)
             
 
     def alocaDemanda(self, **kwargs):

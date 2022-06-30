@@ -34,7 +34,7 @@ motoraRefac = CadastroMotoraRefac()
 testeChats = [chats.encerraChat,chats.iniciaChat, chats.chatEmMassa]
 acoesDemandas = [demandas.criaDemanada, demandas.alocaDemanda]
 rotas = [aceitaRota.aceitaRota]
-cenario = [chats.chatEmMassa]
+cenario = [testeChats[2],acoesDemandas[0]]
 
 
 with sync_playwright() as playwright:

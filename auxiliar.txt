@@ -1,0 +1,83 @@
+Record
+
+
+
+
+Target:
+
+Python
+
+from playwright.sync_api import Playwright, sync_playwright, expect
+def run(playwright: Playwright) -> None:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    # Open new page
+    page = context.new_page()
+    # Go to https://ccomatrix-homologacao.matrixcargo.com.br/
+    page.goto("https://ccomatrix-homologacao.matrixcargo.com.br/")
+    # Click [placeholder="Login"]
+    page.locator("[placeholder=\"Login\"]").click()
+    # Fill [placeholder="Login"]
+    page.locator("[placeholder=\"Login\"]").fill("joao.bach@matrixcargo.com.br")
+    # Press Enter
+    page.locator("[placeholder=\"Login\"]").press("Enter")
+    # Press Tab
+    page.locator("[placeholder=\"Login\"]").press("Tab")
+    # Fill [placeholder="Senha"]
+    page.locator("[placeholder=\"Senha\"]").fill("123")
+    # Press Enter
+    page.locator("[placeholder=\"Senha\"]").press("Enter")
+    # Click #basic-navbar-nav >> text=Chats
+    page.locator("#basic-navbar-nav >> text=Chats").click()
+    # expect(page).to_have_url("https://ccomatrix-homologacao.matrixcargo.com.br/chats")
+    # Click text=add_commentIniciar novo chat
+    page.frame_locator("iframe").locator("text=add_commentIniciar novo chat").click()
+    # Click [placeholder="Buscar por nome\, CPF ou carteira de motorista"]
+    page.frame_locator("iframe").locator("[placeholder=\"Buscar por nome\\, CPF ou carteira de motorista\"]").click()
+    # Fill [placeholder="Buscar por nome\, CPF ou carteira de motorista"]
+    page.frame_locator("iframe").locator("[placeholder=\"Buscar por nome\\, CPF ou carteira de motorista\"]").fill("nome")
+    # Press Enter
+    page.frame_locator("iframe").locator("[placeholder=\"Buscar por nome\\, CPF ou carteira de motorista\"]").press("Enter")
+    # Fill [placeholder="Buscar por nome\, CPF ou carteira de motorista"]
+    page.frame_locator("iframe").locator("[placeholder=\"Buscar por nome\\, CPF ou carteira de motorista\"]").fill("teste")
+    # Press Enter
+    page.frame_locator("iframe").locator("[placeholder=\"Buscar por nome\\, CPF ou carteira de motorista\"]").press("Enter")
+    # Click text=Motorista de Teste >> nth=1
+    page.frame_locator("iframe").locator("text=Motorista de Teste").nth(1).click()
+    # Click text=Motorista de Teste >> nth=2
+    page.frame_locator("iframe").locator("text=Motorista de Teste").nth(2).click()
+    # Click div[role="dialog"] >> text=Lucas Teste
+    page.frame_locator("iframe").locator("div[role=\"dialog\"] >> text=Lucas Teste").click()
+    # Click div[role="dialog"] div[role="button"]:has-text("Documentos da Viagem")
+    page.frame_locator("iframe").locator("div[role=\"dialog\"] div[role=\"button\"]:has-text(\"Documentos da Viagem\")").click()
+    # Click text=ManutençãoGerenciamento de RiscodoneDocumentos da ViagemSuporteIniciar conversa >> button
+    page.frame_locator("iframe").locator("text=ManutençãoGerenciamento de RiscodoneDocumentos da ViagemSuporteIniciar conversa >> button").click()
+    # Click text=add_commentIniciar um novo chat
+    page.frame_locator("iframe").locator("text=add_commentIniciar um novo chat").click()
+    # Click text=Carteira de motorista / CNH2 >> nth=0
+    page.frame_locator("iframe").locator("text=Carteira de motorista / CNH2").first.click()
+    # Click text=NomeABDO EL JHOUWAYER JUNIORCPF33101730899Carteira de motorista / CNH12345672Tip
+    page.frame_locator("iframe").locator("text=NomeABDO EL JHOUWAYER JUNIORCPF33101730899Carteira de motorista / CNH12345672Tip").click()
+    # Click text=NomeABEL DA LUZ CASTROCPF74914570963Carteira de motorista / CNH12345673TipoAGREG
+    page.frame_locator("iframe").locator("text=NomeABEL DA LUZ CASTROCPF74914570963Carteira de motorista / CNH12345673TipoAGREG").click()
+    # Click text=NomeABELINO RODRIGUES DE SOUZACPF71167030630Carteira de motorista / CNH12345674T
+    page.frame_locator("iframe").locator("text=NomeABELINO RODRIGUES DE SOUZACPF71167030630Carteira de motorista / CNH12345674T").click()
+    # Click text=NomeABEL RECHE GUEDESCPF12288294892Carteira de motorista / CNH03129302274TipoTER
+    page.frame_locator("iframe").locator("text=NomeABEL RECHE GUEDESCPF12288294892Carteira de motorista / CNH03129302274TipoTER").click()
+    # Click [placeholder="Buscar por nome\, CPF ou carteira de motorista"]
+    page.frame_locator("iframe").locator("[placeholder=\"Buscar por nome\\, CPF ou carteira de motorista\"]").click()
+    # Fill [placeholder="Buscar por nome\, CPF ou carteira de motorista"]
+    page.frame_locator("iframe").locator("[placeholder=\"Buscar por nome\\, CPF ou carteira de motorista\"]").fill("teste1")
+    # Press Enter
+    page.frame_locator("iframe").locator("[placeholder=\"Buscar por nome\\, CPF ou carteira de motorista\"]").press("Enter")
+    # Click text=Carteira de motorista / CNH99199199199
+    page.frame_locator("iframe").locator("text=Carteira de motorista / CNH99199199199").click()
+    # Click text=CPF11111111111
+    page.frame_locator("iframe").locator("text=CPF11111111111").click()
+    # Click text=Carteira de motorista / CNH44444444441
+    page.frame_locator("iframe").locator("text=Carteira de motorista / CNH44444444441").click()
+    # ---------------------
+    context.close()
+    browser.close()
+with sync_playwright() as playwright:
+    run(playwright)
